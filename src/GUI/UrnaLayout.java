@@ -1,13 +1,18 @@
 package GUI;
 
+import arquivo.Arquivo;
+
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.*;
 
-public class UrnaLayout extends JFrame {
+public class UrnaLayout extends JFrame implements ActionListener {
     private JPanel panel;
     private JLabel lbl;
     private JTextField tf;
     private JButton btn;
+    private Arquivo arquivo;
 
     public UrnaLayout(){
         // Cria um painel
@@ -34,7 +39,7 @@ public class UrnaLayout extends JFrame {
         btn.setFocusPainted(false);
         btn.setText("ENVIAR");
         btn.setFont(new Font("Lucida Fax", Font.PLAIN, 12));
-
+        btn.addActionListener(this);
 
         //Frame
         this.setSize(330,200);
@@ -57,4 +62,16 @@ public class UrnaLayout extends JFrame {
 
     }//Fim do construtor
 
+    // Analisa se o eleitor existe no arquivo eleitores.txt e se está validado com a criptografia
+    @Override
+    public void actionPerformed(ActionEvent actionEvent) {
+        if (actionEvent.getSource() == btn) {
+            arquivo = new Arquivo();
+            if (arquivo.validarMatricula(tf.getText())) {
+                JOptionPane.showMessageDialog(null, "Boa votação!");
+            } else {
+                JOptionPane.showMessageDialog(null, "Usuário inválido!");
+            }
+        }
+    }
 }
