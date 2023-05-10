@@ -18,7 +18,10 @@ public class Arquivo extends HashGenerator {
     public static boolean validarMatricula(String matricula) {
         // Verifica se o arquivo existe antes de executar a busca
         File arquivo = new File(NOME_ARQUIVO);
-        if (!arquivo.exists() && !new File(VOTOS_FILENAME).exists()) {
+        if (!arquivo.exists()) {
+            JOptionPane.showMessageDialog(null, "Arquivos não encontrados.");
+            return false;
+        } if (!new File(VOTOS_FILENAME).exists()) {
             JOptionPane.showMessageDialog(null, "Arquivos não encontrados.");
             return false;
         }
@@ -43,4 +46,3 @@ public class Arquivo extends HashGenerator {
         return encontrouMatricula;
     }
 }
-

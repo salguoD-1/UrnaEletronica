@@ -1,10 +1,15 @@
 package GUI;
 
 import arquivo.Arquivo;
+import criptografia.HashGenerator;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.security.NoSuchAlgorithmException;
 import javax.swing.*;
 
 public class UrnaLayout extends JFrame implements ActionListener {
@@ -13,6 +18,7 @@ public class UrnaLayout extends JFrame implements ActionListener {
     private JTextField tf;
     private JButton btn;
     private Arquivo arquivo;
+    private static final String VOTOS_FILENAME = "votos.txt";
 
     public UrnaLayout(){
         // Cria um painel
@@ -150,6 +156,41 @@ public class UrnaLayout extends JFrame implements ActionListener {
         panel.repaint();
 
         telaVotacao.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        // Computa o voto seguido da hash no arquivo votos.txt
+        votarButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String escolha = "";
+                if (linuxButton.isSelected()) {
+                    escolha = "Linux";
+                } else if (windowsButton.isSelected()) {
+                    escolha = "Windows";
+                } else if (macButton.isSelected()) {
+                    escolha = "Mac";
+                } else if (nuloButton.isSelected()) {
+                    escolha = "Branco/Nulo";
+                }
+
+                if (!escolha.isEmpty()) {
+                    try {
+                        BufferedWriter writer = new BufferedWriter(new FileWriter(VOTOS_FILENAME, true));
+                        writer.write(escolha + " " + HashGenerator.generateHash(tf.getText()));
+                        writer.newLine();
+                        writer.close();
+                        JOptionPane.showMessageDialog(null, "Voto registrado com sucesso!");
+                        telaVotacao.dispose();
+                    } catch (IOException ex) {
+                        JOptionPane.showMessageDialog(null, "Erro ao gravar o voto.");
+                        ex.printStackTrace();
+                    } catch (NoSuchAlgorithmException ex) {
+                        throw new RuntimeException(ex);
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(null, "Escolha uma opção antes de votar.");
+                }
+            }
+        });
     }
 
 }
