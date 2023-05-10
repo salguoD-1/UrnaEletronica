@@ -69,9 +69,87 @@ public class UrnaLayout extends JFrame implements ActionListener {
             arquivo = new Arquivo();
             if (arquivo.validarMatricula(tf.getText())) {
                 JOptionPane.showMessageDialog(null, "Boa votação!");
+                telaVotar();
             } else {
                 JOptionPane.showMessageDialog(null, "Usuário inválido!");
             }
         }
+    }// fim da ação do botão
+    public void telaVotar() {
+        Font buttonsFonte = new Font("Verdana", Font.PLAIN, 20);
+
+        // Cria a tela com os radio buttons e o botão votar
+        JFrame telaVotacao = new JFrame("Votação");
+        telaVotacao.setSize(650,300);
+        telaVotacao.setResizable(false);
+        telaVotacao.setLocationRelativeTo(null);
+
+        //Panel
+        JPanel panelVotacao = new JPanel();
+        panelVotacao.setBackground(Color.black);
+
+        //Label
+        JLabel perguntaLabel = new JLabel();
+        perguntaLabel.setText("QUAL É O SEU SISTEMA OPERACIONAL PREFERIDO?");
+        perguntaLabel.setForeground(Color.orange);
+        perguntaLabel.setFont(new Font("Lucida Fax", Font.BOLD, 22));
+
+        //Botões
+        ButtonGroup grupoBotoes = new ButtonGroup();
+        JRadioButton linuxButton = new JRadioButton("Linux");
+        JRadioButton windowsButton = new JRadioButton("Windows");
+        JRadioButton macButton = new JRadioButton("Mac");
+        JRadioButton nuloButton = new JRadioButton("Branco/Nulo");
+        JButton votarButton = new JButton("VOTAR");
+
+        grupoBotoes.add(linuxButton);
+        grupoBotoes.add(windowsButton);
+        grupoBotoes.add(macButton);
+        grupoBotoes.add(nuloButton);
+
+        //Estilo dos botões
+        linuxButton.setForeground(Color.cyan);
+        linuxButton.setBackground(Color.black);
+        linuxButton.setFont(buttonsFonte);
+        //Windows
+        windowsButton.setBackground(Color.black);
+        windowsButton.setForeground(Color.green);
+        windowsButton.setFont(buttonsFonte);
+        //Mac
+        macButton.setBackground(Color.black);
+        macButton.setForeground(Color.red);
+        macButton.setFont(buttonsFonte);
+        //Nulo
+        nuloButton.setBackground(Color.black);
+        nuloButton.setForeground(Color.white);
+        nuloButton.setFont(buttonsFonte);
+        //Votar
+        votarButton.setBackground(Color.orange);
+        votarButton.setForeground(Color.black);
+        votarButton.setFont(new Font("Lucida Fax",Font.PLAIN,12 ));
+        votarButton.setFocusPainted(false);
+
+
+        // Add elementos
+        panelVotacao.add(perguntaLabel);
+        panelVotacao.add(linuxButton);
+        panelVotacao.add(windowsButton);
+        panelVotacao.add(macButton);
+        panelVotacao.add(nuloButton);
+        panelVotacao.add(votarButton);
+
+        //Adicionar panel ao frame
+        telaVotacao.setContentPane(panelVotacao);
+
+        //Tornar Visivel
+        panelVotacao.setVisible(true);
+        telaVotacao.setVisible(true);
+
+        panel.removeAll();
+        panel.revalidate();
+        panel.repaint();
+
+        telaVotacao.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
+
 }
