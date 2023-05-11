@@ -20,7 +20,7 @@ votação:
 
 ## Para utilizar o sistema é necessário ter a JDK 8 instalada em sua máquina.
 
-## Algumas imagens da interface gráfica de votação:
+### Algumas imagens da interface gráfica de votação:
 
 ![](imagens/print0.png)
 ![](imagens/print1.png)
