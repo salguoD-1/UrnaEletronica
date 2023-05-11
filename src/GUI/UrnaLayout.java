@@ -20,7 +20,7 @@ public class UrnaLayout extends JFrame implements ActionListener {
     private Arquivo arquivo;
     private static final String VOTOS_FILENAME = "votos.txt";
 
-    public UrnaLayout(){
+    public UrnaLayout() {
         // Cria um painel
         panel = new JPanel();
         panel.setBackground(Color.black);
@@ -48,7 +48,7 @@ public class UrnaLayout extends JFrame implements ActionListener {
         btn.addActionListener(this);
 
         //Frame
-        this.setSize(330,200);
+        this.setSize(330, 200);
         this.setResizable(false);
         this.setLocationRelativeTo(null);
         this.setTitle("Urna Eletronica");
@@ -81,12 +81,13 @@ public class UrnaLayout extends JFrame implements ActionListener {
             }
         }
     }// fim da ação do botão
+
     public void telaVotar() {
         Font buttonsFonte = new Font("Verdana", Font.PLAIN, 20);
 
         // Cria a tela com os radio buttons e o botão votar
         JFrame telaVotacao = new JFrame("Votação");
-        telaVotacao.setSize(650,300);
+        telaVotacao.setSize(650, 300);
         telaVotacao.setResizable(false);
         telaVotacao.setLocationRelativeTo(null);
 
@@ -132,7 +133,7 @@ public class UrnaLayout extends JFrame implements ActionListener {
         //Votar
         votarButton.setBackground(Color.orange);
         votarButton.setForeground(Color.black);
-        votarButton.setFont(new Font("Lucida Fax",Font.PLAIN,12 ));
+        votarButton.setFont(new Font("Lucida Fax", Font.PLAIN, 12));
         votarButton.setFocusPainted(false);
 
 
@@ -180,6 +181,7 @@ public class UrnaLayout extends JFrame implements ActionListener {
                         writer.close();
                         JOptionPane.showMessageDialog(null, "Voto registrado com sucesso!");
                         telaVotacao.dispose();
+                        telaEncerramento();
                     } catch (IOException ex) {
                         JOptionPane.showMessageDialog(null, "Erro ao gravar o voto.");
                         ex.printStackTrace();
@@ -191,6 +193,60 @@ public class UrnaLayout extends JFrame implements ActionListener {
                 }
             }
         });
-    }
+    }//Fim telaVotar()
 
+    public void telaEncerramento() {
+        //Criar novo frame
+        JFrame encerramentoFrame = new JFrame();
+        encerramentoFrame.setResizable(false);
+        encerramentoFrame.setSize(330, 200);
+        encerramentoFrame.setLocationRelativeTo(null);
+
+        //Criar novo panel
+        JPanel encerramentoPanel = new JPanel();
+        encerramentoPanel.setBackground(Color.black);
+
+        //Criar label
+        JLabel encerramentoTexto = new JLabel();
+        encerramentoTexto.setText("OBRIGADO POR VOTAR!");
+        encerramentoTexto.setFont(new Font("Lucida Fax", Font.BOLD, 22));
+        encerramentoTexto.setForeground(Color.orange);
+
+        //Criar botão
+        JButton voltarBotao = new JButton();
+        voltarBotao.setText("VOLTAR");
+        voltarBotao.setFocusPainted(false);
+        voltarBotao.setBackground(Color.ORANGE);
+        voltarBotao.setForeground(Color.BLACK);
+        voltarBotao.setBorderPainted(false);
+
+        //Adicionar elementos ao painel
+        encerramentoPanel.add(encerramentoTexto);
+        encerramentoPanel.add(voltarBotao);
+
+        //Adicionar panel ao frame
+        encerramentoFrame.setContentPane(encerramentoPanel);
+
+        //Tornar visivel
+        encerramentoFrame.setVisible(true);
+        encerramentoPanel.setVisible(true);
+
+        voltarBotao.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                encerramentoFrame.dispose(); // fecha a telaEncerramento
+                dispose(); // fecha a tela principal
+                exibirTelaMatricula();
+            }
+        });
+        panel.removeAll();
+        panel.revalidate();
+        panel.repaint();
+        encerramentoFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+    }//fim telaEncerramento
+
+    // Cria a tela padrão do construtor
+    public void exibirTelaMatricula() {
+        new UrnaLayout();
+    }//fim exibirTelaMatricula()
 }
