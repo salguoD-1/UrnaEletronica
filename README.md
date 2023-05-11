@@ -9,6 +9,14 @@ votação:
 3. O extrato de votação se encontra no arquivo votos.txt
 4. Não há uma tela de exibição de ganhador, foi adotado a ideia de que o extrato seria lido por agentes externos e 
    os votos seriam computados em um sistema externo, exibindo assim o vencedor.
+5. Para entrar no sistema foi disponibilizado 5 matrículas, sendo elas:
+```txt
+202244459722
+202233359722
+202222259722
+202211159722
+202200059722
+```
 
 ## Para utilizar o sistema é necessário ter a JDK 8 instalada em sua máquina.
 
