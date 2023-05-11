@@ -22,6 +22,7 @@ votação:
 
 ## Algumas imagens da interface gráfica de votação:
 
+![](imagens/print0.png)
 ![](imagens/print1.png)
 ![](imagens/print2.png)
 ![](imagens/print3.png)
