@@ -5,8 +5,8 @@ caso essa matrícula exista no sistema, ele poderá depositar o seu voto. Para i
 votação:
 1. O usuário poderá votar quantas vezes quiser, desde que esteja devidamente cadastrado no sistema.
 2. Os votos são armazenados no arquivo votos.txt, cada voto é acompanhado de uma hash que é a matrícula do usuário. 
-   Dessa forma garantimos a autencidade do voto.
-3. O extrato de votação se encontra no arquivo votos.txt
+   Dessa forma garantimos a autenticidade do voto.
+3. O extrato de votação se encontra no arquivo votos.txt.
 4. Não há uma tela de exibição de ganhador, foi adotado a ideia de que o extrato seria lido por agentes externos e 
    os votos seriam computados em um sistema externo, exibindo assim o vencedor.
 5. Para entrar no sistema foi disponibilizado 5 matrículas, sendo elas:
@@ -17,10 +17,13 @@ votação:
 202211159722
 202200059722
 ```
+# OBS: 
+### Para utilizar o sistema é necessário ter a JDK 8 instalada em sua máquina.
+### Todo o código foi escrito utilizando a IDE Intellij.
+### Para rodar os testes unitários é necessário importar as dependências da JUnit.
+### A votação só é iniciada caso os arquivos eleitores.txt e votos.txt existam.
 
-## Para utilizar o sistema é necessário ter a JDK 8 instalada em sua máquina.
-
-### Algumas imagens da interface gráfica de votação:
+#### Algumas imagens da interface gráfica de votação:
 
 ![](imagens/print0.png)
 ![](imagens/print1.png)
